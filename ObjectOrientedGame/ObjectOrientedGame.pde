@@ -1,5 +1,9 @@
 float user = 0; //the variable that is used to direct the player around the game
 
+//creating objects
+Player player;
+
+
 void setup () {
   size (600, 600);
   

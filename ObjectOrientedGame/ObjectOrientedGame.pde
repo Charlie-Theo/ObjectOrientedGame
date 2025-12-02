@@ -8,6 +8,9 @@ void setup () {
   size (600, 600);
   
   rectMode (CORNERS);
+  ellipseMode (CENTER);
+  
+  player = new Player();
 }
 
 
@@ -51,5 +54,6 @@ void menu () {
 
 
 void game () {
-  
+  player.update();
+  player.display();
 }//game end

@@ -1,8 +1,8 @@
 float user = 0; //the variable that is used to direct the player around the game
 
 //variables for maze movement
-int levelX = 0; //this variable slowly gets more negative to move the maze to the left
-int levelSpeed = 1; //how fast the level moves
+float levelX = 0; //this variable slowly gets more negative to move the maze to the left
+float levelSpeed = 1; //how fast the level moves
 boolean reset = false; //determines if the level needs to be reset or not
 
 void setup () {
@@ -58,6 +58,10 @@ void game () {
     levelX = 0; //resets the level position whenever the game function is called
   }
   
+  if (levelX%1500 == 0) {
+    levelSpeed = levelSpeed * 1.3; //increases level speed every 1500 pixels
+  }
+  
   //moving level
   levelX = levelX - levelSpeed; //updated the level position every frame based on the set speed
   
@@ -68,5 +72,9 @@ void game () {
   rect (levelX+400, 250, levelX+800, 400);
   rect (levelX+650, 400, levelX+800, 600);
   rect (levelX+1000, 0, levelX+1200, 400);
+  rect (levelX+1400, 0, levelX+2000, 100);
+  rect (levelX+1400, 200, levelX+2000, 300);
+  rect (levelX+1400, 500, levelX+2000, 600);
+  rect (levelX+2000, 200, levelX+2200, 400);
   
 }//game end

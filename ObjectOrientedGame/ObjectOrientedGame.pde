@@ -68,8 +68,8 @@ void game () {
   //creating display for maze
   fill (201, 151, 51);
   
-  rect (levelX+400, 0, levelX+1000, 100);
-  rect (levelX+400, 250, levelX+800, 400);
+  rect (levelX+500, 0, levelX+1000, 100);
+  rect (levelX+500, 250, levelX+800, 400);
   rect (levelX+650, 400, levelX+800, 600);
   rect (levelX+1000, 0, levelX+1200, 400);
   rect (levelX+1400, 0, levelX+2000, 100);
@@ -80,5 +80,11 @@ void game () {
   rect (levelX+2200, 300, levelX+2300, 600);
   rect (levelX+2400, 0, levelX+2500, 400);
   rect (levelX+2400, 550, levelX+2500, 600);
-  
+  rect (levelX+2600, 0, levelX+2700, 100);
+  rect (levelX+2600, 100, levelX+3000, 200);
+  rect (levelX+2600, 300, levelX+2900, 400);
+  rect (levelX+2600, 500, levelX+3000, 600);
+  rect (levelX+3000, 100, levelX+3100, 250);
+  rect (levelX+3200, 0, levelX+3300, 400);
+  rect (levelX+2900, 350, levelX+3200, 400);
 }//game end

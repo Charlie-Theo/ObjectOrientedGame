@@ -62,8 +62,10 @@ void game () {
     levelSpeed = levelSpeed * 1.3; //increases level speed every 1500 pixels
   }
   
-  //moving level
-  levelX = levelX - levelSpeed; //updated the level position every frame based on the set speed
+  if (levelX > -3400) {//makes the level stop moving at the end
+    //moving level
+    levelX = levelX - levelSpeed; //updated the level position every frame based on the set speed
+  }
   
   //creating display for maze
   fill (201, 151, 51);
@@ -87,4 +89,10 @@ void game () {
   rect (levelX+3000, 100, levelX+3100, 250);
   rect (levelX+3200, 0, levelX+3300, 400);
   rect (levelX+2900, 350, levelX+3200, 400);
+  
+  //creating display for finish
+  fill (87, 209, 40);
+  
+  rect (levelX+3400, 0, levelX+4000, 600);
+  
 }//game end

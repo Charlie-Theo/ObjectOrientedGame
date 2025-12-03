@@ -75,6 +75,10 @@ void game () {
   rect (levelX+1400, 0, levelX+2000, 100);
   rect (levelX+1400, 200, levelX+2000, 300);
   rect (levelX+1400, 500, levelX+2000, 600);
-  rect (levelX+2000, 200, levelX+2200, 400);
+  rect (levelX+2000, 200, levelX+2100, 600);
+  rect (levelX+2200, 0, levelX+2300, 150);
+  rect (levelX+2200, 300, levelX+2300, 600);
+  rect (levelX+2400, 0, levelX+2500, 400);
+  rect (levelX+2400, 550, levelX+2500, 600);
   
 }//game end

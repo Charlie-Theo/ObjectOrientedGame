@@ -42,15 +42,40 @@ void mouseClicked () {
 
 
 void keyPressed () {
-  if (key == 'W') {
-    up = true;
-    
+  if (key == 'w') {
+    player.up = true;
+  }
+  
+  if (key == 's') {
+    player.down = true;
+  }
+  
+  if (key == 'a') {
+    player.left = true;
+  }
+  
+  if (key == 'd') {
+    player.right = true;
   }
 }
 
 
 void keyReleased () {
+  if (key == 'w') {
+    player.up = false;
+  }
   
+  if (key == 's') {
+    player.down = false;
+  }
+  
+  if (key == 'a') {
+    player.left = false;
+  }
+  
+  if (key == 'd') {
+    player.right = false;
+  }
 }
 
 
@@ -73,6 +98,6 @@ void menu () {
 
 
 void game () {
-  player.update();
+  player.move();
   player.display();
 }//game end

@@ -1,5 +1,11 @@
 float user = 0; //the variable that is used to direct the player around the game
 
+//variables that change based on movement direction from player
+boolean up = false;
+boolean down = false;
+boolean left = false;
+boolean right = false;
+
 //creating objects
 Player player;
 
@@ -33,6 +39,19 @@ void mouseClicked () {
     }
   }
 }//mouseClicked end
+
+
+void keyPressed () {
+  if (key == 'W') {
+    up = true;
+    
+  }
+}
+
+
+void keyReleased () {
+  
+}
 
 
 void menu () {

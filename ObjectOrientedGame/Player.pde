@@ -8,6 +8,7 @@ class Player {
   Player () {
     location = new PVector (250, 250);
     velocity = new PVector (0, 0);
+    
     acceleration = new PVector (-0.0001, 0.001);
   }
   
@@ -18,7 +19,6 @@ class Player {
     velocity.limit(5);
     
     location.add(velocity);
-    
   }
   
   

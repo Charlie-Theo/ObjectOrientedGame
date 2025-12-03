@@ -5,12 +5,6 @@ float levelX = 0; //this variable slowly gets more negative to move the maze to 
 float levelSpeed = 1; //how fast the level moves
 boolean reset = false; //determines if the level needs to be reset or not
 
-//variables that change based on movement direction from player
-boolean up = false;
-boolean down = false;
-boolean left = false;
-boolean right = false;
-
 //creating objects
 Player player;
 
@@ -46,7 +40,7 @@ void mouseClicked () {
 
 
 void keyPressed () {
-  if (key == 'w') {
+  if (key == 'w') { //checks if the player is pressing a movement key, and sends it to the object (repeated for all directions)
     player.up = true;
   }
   
@@ -65,7 +59,7 @@ void keyPressed () {
 
 
 void keyReleased () {
-  if (key == 'w') {
+  if (key == 'w') { //tells the object the player is no longer pressing the movement key (repeated for all directions)
     player.up = false;
   }
   
@@ -145,7 +139,7 @@ void game () {
   
   rect (levelX+3400, 0, levelX+4000, 600);
   
-  //player movement
+  //player object display and movement
   player.move();
   player.display();
 }//game end

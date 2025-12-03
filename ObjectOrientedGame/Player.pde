@@ -4,11 +4,6 @@ class Player {
   PVector velocity;
   PVector acceleration;
   
-  float xV;
-  float yV;
-  float xL;
-  float yL;
-  
   //boolean variables for movement
   boolean up;
   boolean down;
@@ -25,36 +20,80 @@ class Player {
   
   
   void move () {
-    if (up == true) {
-      velocity.sub(acceleration);
-      velocity.limit(5);
-      velocity.x = 0;
-      
-      location.add(velocity);
+    if (up == true) { //only calculates position when a key is pressed by the user (repeated for all directions)
+      if (location.y < 600 && location.y > 0) { //checks if the player is at the edge of the screen and if so prevenets movement
+        velocity.sub(acceleration); //adds or subtracts acceleration based on direction 
+        velocity.limit(5);
+        velocity.x = 0; // resets opposite axis to prevent continuous input after releasing key
+        
+        location.add(velocity);
+      } else {
+        if (location.y <= 0) {
+          location.y = location.y + 2; //bounces player off the screen edge at the top of screen
+          velocity.x = 0;
+        }
+        if (location.y >= 600) {
+          location.y = location.y - 2; //bounces player off the screen edge at the bottom of screen
+          velocity.x = 0;
+        }
+      }
     }
     
     if (down == true) {
-      velocity.add(acceleration);
-      velocity.limit(5);
-      velocity.x = 0;
-      
-      location.add(velocity);
+      if (location.y < 600 && location.y > 0) {
+        velocity.add(acceleration);
+        velocity.limit(5);
+        velocity.x = 0;
+        
+        location.add(velocity);
+      } else {
+        if (location.y <= 0) {
+          location.y = location.y + 2;
+          velocity.x = 0;
+        }
+        if (location.y >= 600) {
+          location.y = location.y - 2;
+          velocity.x = 0;
+        }
+      }
     }
     
     if (left == true) {
-      velocity.sub(acceleration);
-      velocity.limit(5);
-      velocity.y = 0;
-      
-      location.add(velocity);
+      if (location.x < 600 && location.x > 0) {
+        velocity.sub(acceleration);
+        velocity.limit(5);
+        velocity.y = 0;
+        
+        location.add(velocity);
+      } else {
+        if (location.x <= 0) {
+          location.x = location.x + 2; //bounces player off the screen edge at the left of screen
+          velocity.y = 0;
+        }
+        if (location.x >= 600) {
+          location.x = location.x - 2; //bounces player off the screen edge at the right of screen
+          velocity.y = 0;
+        }
+      }
     }
     
     if (right == true) {
-      velocity.add(acceleration);
-      velocity.limit(5);
-      velocity.y = 0;
-      
-      location.add(velocity);
+      if (location.x < 600 && location.x > 0) {
+        velocity.add(acceleration);
+        velocity.limit(5);
+        velocity.y = 0;
+        
+        location.add(velocity);
+      } else {
+        if (location.x <= 0) {
+          location.x = location.x + 2; 
+          velocity.y = 0;
+        }
+        if (location.x >= 600) {
+          location.x = location.x - 2; 
+          velocity.y = 0;
+        }
+      }
     }
   }
   

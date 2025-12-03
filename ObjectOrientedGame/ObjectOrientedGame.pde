@@ -5,10 +5,22 @@ float levelX = 0; //this variable slowly gets more negative to move the maze to 
 float levelSpeed = 1; //how fast the level moves
 boolean reset = false; //determines if the level needs to be reset or not
 
+//variables that change based on movement direction from player
+boolean up = false;
+boolean down = false;
+boolean left = false;
+boolean right = false;
+
+//creating objects
+Player player;
+
 void setup () {
   size (600, 600);
   
   rectMode (CORNERS);
+  ellipseMode (CENTER);
+  
+  player = new Player();
 }
 
 
@@ -31,6 +43,44 @@ void mouseClicked () {
     }
   }
 }//mouseClicked end
+
+
+void keyPressed () {
+  if (key == 'w') {
+    player.up = true;
+  }
+  
+  if (key == 's') {
+    player.down = true;
+  }
+  
+  if (key == 'a') {
+    player.left = true;
+  }
+  
+  if (key == 'd') {
+    player.right = true;
+  }
+}
+
+
+void keyReleased () {
+  if (key == 'w') {
+    player.up = false;
+  }
+  
+  if (key == 's') {
+    player.down = false;
+  }
+  
+  if (key == 'a') {
+    player.left = false;
+  }
+  
+  if (key == 'd') {
+    player.right = false;
+  }
+}
 
 
 void menu () {
@@ -95,4 +145,7 @@ void game () {
   
   rect (levelX+3400, 0, levelX+4000, 600);
   
+  //player movement
+  player.move();
+  player.display();
 }//game end

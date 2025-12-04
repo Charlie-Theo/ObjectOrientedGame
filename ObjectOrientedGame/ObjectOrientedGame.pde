@@ -198,6 +198,13 @@ void game () {
   ellipse (-25, 500, 200, 200);
   ellipse (50, 600, 100, 100);
   
+  triangle (0, 0, 150, 100, 0, 125);
+  triangle (0, 75, 125, 140, 0, 150);
+  triangle (0, 200, 150, 240, 0, 275);
+  triangle (0, 310, 140, 350, 0, 385);
+  triangle (0, 450, 120, 490, 0, 510);
+  triangle (0, 540, 110, 575, 0, 600);
+  
   //drawing monster effects
   if (frameCount %150 == 0 || frameCount %100 == 1 || frameCount %100 == 3 || frameCount %100 == 4) { //making the effects flicker every few frames for 4 frames
     for (int c = 0; c < 40; c++) {

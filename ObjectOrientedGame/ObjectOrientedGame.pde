@@ -136,6 +136,8 @@ void game () {
   if (levelX > -3400) {//makes the level stop moving at the end
     //moving level
     levelX = levelX - levelSpeed; //updated the level position every frame based on the set speed
+  } else {
+    user = 2; //sends the user to the restart function through draw, but with the win conditions
   }
   
   //creating display for maze
@@ -193,7 +195,11 @@ void game () {
 
 
 void restart () {
-  fill (216, 76, 37);
+  if (lose == true) {
+    fill (216, 76, 37);
+  } else {
+    fill (111, 242, 37);
+  }
   rect (0, 0, 600, 600);
   
   if (mouseX <= 250 && mouseX >= 100) {

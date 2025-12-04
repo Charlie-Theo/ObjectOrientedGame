@@ -111,6 +111,17 @@ class Player {
   
   
   void display () {
-    ellipse (location.x, location.y, 40, 40);
+    
+    strokeWeight (3);
+    line (location.x-10, location.y+20, location.x-10, location.y+30);
+    line (location.x+10, location.y+20, location.x+10, location.y+30);
+    strokeWeight (1);
+    
+    fill (0, 255, 255);
+    triangle (location.x-30, location.y+20, location.x+30, location.y+20, location.x, location.y-30);
+    
+    fill(0);
+    ellipse (location.x-10, location.y, 5, 10);
+    ellipse (location.x+10, location.y, 5, 10);
   }
 }

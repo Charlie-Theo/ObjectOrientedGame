@@ -98,6 +98,13 @@ class Player {
   }
   
   
+  void checkLose () {
+    if (location.x < 100) { //checks if the player's x location is within the monster's zone
+      lose = true;
+    }
+  }
+  
+  
   void display () {
     ellipse (location.x, location.y, 40, 40);
   }

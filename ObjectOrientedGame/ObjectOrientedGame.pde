@@ -5,6 +5,8 @@ float levelX = 0; //this variable slowly gets more negative to move the maze to 
 float levelSpeed = 1; //how fast the level moves
 boolean reset = false; //determines if the level needs to be reset or not
 
+boolean lose = false; //tells the program if the user lost
+
 //creating objects
 Player player;
 
@@ -25,6 +27,8 @@ void draw () {
   } else if (user == 1) {
     //calling game function
     game();
+  } else if (user == 2) {
+    
   }
 }
 
@@ -142,4 +146,24 @@ void game () {
   //player object display and movement
   player.move();
   player.display();
+  
+  //checks if the player as run into the monster
+  player.checkLose();
+  
+  //displaying monster
+  fill(0);
+  
+  ellipse (0, 100, 200, 200);
+  ellipse (50, 0, 100, 100);
+  ellipse (50, 150, 100, 100);
+  ellipse (0, 300, 250, 250);
+  ellipse (25, 400, 150, 150);
+  ellipse (-25, 500, 200, 200);
+  ellipse (50, 600, 100, 100);
+  
+  //adding lose condition
+  if (lose == true) {
+    user = 2;
+  }
+  
 }//game end

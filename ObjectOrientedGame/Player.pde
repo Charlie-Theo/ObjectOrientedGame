@@ -111,6 +111,22 @@ class Player {
   }
   
   
+  void collision (Wall wall) {
+    if (location.x < wall.wallX2) {
+      location.x -= velocity.x;
+    }
+    if (location.x > wall.wallX) {
+      location.x += velocity.x;
+    }
+    if (location.y < wall.wallY2) {
+      location.y -= velocity.y;
+    }
+    if (location.y < wall.wallY) {
+      location.y += velocity.y;
+    }
+  }
+  
+  
   void display () {
     
     strokeWeight (3);

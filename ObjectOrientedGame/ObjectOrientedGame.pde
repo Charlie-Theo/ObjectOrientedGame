@@ -9,11 +9,14 @@ boolean lose = false; //tells the program if the user lost
 
 String winLose; //variable for restart text
 
+boolean hit; //tells the wall collider if the player has hit a wall
+
 //creating objects
 Player player;
 
 ArrayList <Circle> monsterEffect = new ArrayList <Circle>();
 ArrayList <Circle> eyes = new ArrayList <Circle>();
+ArrayList <Wall> walls = new ArrayList <Wall>();
 
 void setup () {
   size (600, 600);
@@ -23,6 +26,28 @@ void setup () {
   ellipseMode (CENTER);
   
   player = new Player();
+  
+  //adding data for each wall into ArrayList
+  //this has to be done manually since all the walls have different values
+  walls.add (new Wall (500, 0, 1000, 100));
+  walls.add (new Wall (500, 250, 800, 400));
+  walls.add (new Wall (650, 400, 800, 600));
+  walls.add (new Wall (1000, 0, 1200, 400));
+  walls.add (new Wall (1400, 0, 2000, 100));
+  walls.add (new Wall (1400, 200, 2000, 300));
+  walls.add (new Wall (1400, 500, 2000, 600));
+  walls.add (new Wall (2000, 200, 2100, 600));
+  walls.add (new Wall (2200, 0, 2300, 150));
+  walls.add (new Wall (2200, 300, 2300, 600));
+  walls.add (new Wall (2400, 0, 2500, 400));
+  walls.add (new Wall (2400, 550, 2500, 600));
+  walls.add (new Wall (2600, 0, 2700, 100));
+  walls.add (new Wall (2600, 100, 3000, 200));
+  walls.add (new Wall (2600, 300, 2900, 400));
+  walls.add (new Wall (2600, 500, 3000, 600));
+  walls.add (new Wall (3000, 100, 3100, 250));
+  walls.add (new Wall (3200, 0, 3300, 400));
+  walls.add (new Wall (2900, 350, 3200, 400));
   
   //circles for display
   for (int a = 0; a < 20; a++) {
@@ -153,10 +178,6 @@ void game () {
     reset = false;
   }
   
-  if (levelX%1500 == 0) {
-    levelSpeed = levelSpeed * 1.3; //increases level speed every 1500 pixels
-  }
-  
   if (levelX > -3400) {//makes the level stop moving at the end
     //moving level
     levelX = levelX - levelSpeed; //updated the level position every frame based on the set speed
@@ -164,28 +185,19 @@ void game () {
     user = 2; //sends the user to the restart function through draw, but with the win conditions
   }
   
-  //creating display for maze
-  fill (201, 151, 51);
+  //displays and moves walls
+  for (int a = 0; a < 17; a++) {
+    walls.get(a).display();
+    walls.get(a).move();
+    
+    //checks if the player is within the bounderies of a wall
+    hit = walls.get(a).collision(player);
   
-  rect (levelX+500, 0, levelX+1000, 100);
-  rect (levelX+500, 250, levelX+800, 400);
-  rect (levelX+650, 400, levelX+800, 600);
-  rect (levelX+1000, 0, levelX+1200, 400);
-  rect (levelX+1400, 0, levelX+2000, 100);
-  rect (levelX+1400, 200, levelX+2000, 300);
-  rect (levelX+1400, 500, levelX+2000, 600);
-  rect (levelX+2000, 200, levelX+2100, 600);
-  rect (levelX+2200, 0, levelX+2300, 150);
-  rect (levelX+2200, 300, levelX+2300, 600);
-  rect (levelX+2400, 0, levelX+2500, 400);
-  rect (levelX+2400, 550, levelX+2500, 600);
-  rect (levelX+2600, 0, levelX+2700, 100);
-  rect (levelX+2600, 100, levelX+3000, 200);
-  rect (levelX+2600, 300, levelX+2900, 400);
-  rect (levelX+2600, 500, levelX+3000, 600);
-  rect (levelX+3000, 100, levelX+3100, 250);
-  rect (levelX+3200, 0, levelX+3300, 400);
-  rect (levelX+2900, 350, levelX+3200, 400);
+    if (hit == true) { //tells the wall collision that the player is in a wall
+      player.collision(walls.get(a));
+      hit = false;
+    }
+  }
   
   //creating display for finish
   fill (87, 209, 40);

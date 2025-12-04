@@ -95,6 +95,11 @@ class Player {
         }
       }
     }
+    
+    if (reset == true) { //resets player location when restarting the game
+      location.x = 250;
+      location.y = 300;
+    }
   }
   
   

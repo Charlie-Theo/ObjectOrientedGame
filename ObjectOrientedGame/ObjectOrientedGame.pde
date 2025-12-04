@@ -28,7 +28,7 @@ void draw () {
     //calling game function
     game();
   } else if (user == 2) {
-    
+    restart();
   }
 }
 
@@ -37,7 +37,27 @@ void mouseClicked () {
   //function for clicking the start button
   if (mouseX >= 240 && mouseX <= 360) { //checks if mouse's X position is on button
     if (mouseY >= 330 && mouseY <= 380) { //checks if mouse's Y position is on button
-      user = 1; //tells draw to call the game function
+      if (user == 0) {
+        user = 1; //tells draw to call the game function
+      }
+    }
+  }
+  
+  if (user == 2) {
+    if (mouseX >= 100 && mouseX <= 250) {
+      if (mouseY >= 300 && mouseY <= 400) {
+        user = 1; //tells the game to call the game function in draw
+        reset = true;
+        lose = false;
+      }
+    }
+    
+    if (mouseX >= 350 && mouseX <= 500) {
+      if (mouseY >= 300 && mouseY <= 400) {
+        user = 0; //tells the game to call the menu function in draw
+        reset = true;
+        lose = false;
+      }
     }
   }
 }//mouseClicked end
@@ -104,6 +124,9 @@ void game () {
   
   if (reset == true) {
     levelX = 0; //resets the level position whenever the game function is called
+    player.move(); //calls the move function which restarts the location
+    levelSpeed = 1; //resets level speed
+    reset = false;
   }
   
   if (levelX%1500 == 0) {
@@ -167,3 +190,67 @@ void game () {
   }
   
 }//game end
+
+
+void restart () {
+  fill (216, 76, 37);
+  rect (0, 0, 600, 600);
+  
+  if (mouseX <= 250 && mouseX >= 100) {
+    if (mouseY <= 400 && mouseY >= 300) {
+      fill (100);
+      rect (100, 300, 250, 400);
+    } else {
+      fill (0);
+      rect (100, 300, 250, 400);
+    }
+  } else {
+    fill (0);
+    rect (100, 300, 250, 400);
+  }
+  
+  if (mouseX <= 500 && mouseX >= 300) {
+    if (mouseY <= 400 && mouseY >= 300) {
+      fill (100);
+      rect (350, 300, 500, 400);
+    } else {
+      fill (0);
+      rect (350, 300, 500, 400);
+    }
+  } else {
+    fill (0);
+    rect (350, 300, 500, 400);
+  }
+  
+  
+  fill (255);
+  noStroke();
+  
+  rect (380, 320, 470, 335);
+  rect (380, 345, 470, 360);
+  rect (380, 370, 470, 385);
+  
+  
+  ellipse (175, 350, 70, 70);
+  
+  if (mouseX <= 250 && mouseX >= 100) {
+    if (mouseY <= 400 && mouseY >= 300) {
+      fill (100);
+      ellipse (175, 350, 50, 50);
+      rect (160, 300, 190, 330);
+    } else {
+      fill (0);
+      ellipse (175, 350, 50, 50);
+      rect (160, 300, 190, 330);
+    }
+  } else {
+    fill (0);
+    ellipse (175, 350, 50, 50);
+    rect (160, 300, 190, 330);
+  }
+  
+  fill (255);
+  triangle (160, 305, 160, 350, 185, 322.5);
+  
+  stroke(2);
+}

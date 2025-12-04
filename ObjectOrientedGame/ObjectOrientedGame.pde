@@ -10,6 +10,9 @@ boolean lose = false; //tells the program if the user lost
 //creating objects
 Player player;
 
+ArrayList <Circle> monsterEffect = new ArrayList <Circle>();
+ArrayList <Circle> eyes = new ArrayList <Circle>();
+
 void setup () {
   size (600, 600);
   
@@ -17,6 +20,15 @@ void setup () {
   ellipseMode (CENTER);
   
   player = new Player();
+  
+  //circles for display
+  for (int a = 0; a < 20; a++) {
+    eyes.add (new Circle (random(0, 75), random (0, 600), 15, 15, 222, 59, 0, 100));
+  }
+  
+  for (int b = 0; b < 40; b++) {
+    monsterEffect.add (new Circle(random(0, 75), random (0, 600), 10, 10, 139, 55, 24, random (60, 100)));
+  }
 }
 
 
@@ -186,23 +198,43 @@ void game () {
   ellipse (-25, 500, 200, 200);
   ellipse (50, 600, 100, 100);
   
+  //drawing monster effects
+  if (frameCount %150 == 0 || frameCount %100 == 1 || frameCount %100 == 3 || frameCount %100 == 4) { //making the effects flicker every few frames for 4 frames
+    for (int c = 0; c < 40; c++) {
+      Circle m = monsterEffect.get(c);
+      m.flicker();
+    }  
+  } else {
+    for (int d = 0; d < 40; d++) { //no transparency effects
+      Circle m = monsterEffect.get(d);
+      m.display();
+    }
+  }
+  
+  //drawing eye array list
+  for (int f = 0; f < 20; f++) {
+    Circle e = eyes.get(f);
+    e.displayEyes();
+  }  
+  
   //adding lose condition
   if (lose == true) {
-    user = 2;
+    user = 2; //tells thedraw function to call the restart function
   }
   
 }//game end
 
 
 void restart () {
-  if (lose == true) {
-    fill (216, 76, 37);
+  if (lose == true) { //changes based on if the user is in this menu because they won or lost
+    fill (216, 76, 37); //lost
   } else {
-    fill (111, 242, 37);
+    fill (111, 242, 37); //wins
   }
   rect (0, 0, 600, 600);
   
-  if (mouseX <= 250 && mouseX >= 100) {
+  //displaying restart button
+  if (mouseX <= 250 && mouseX >= 100) { //check if the user's mouse is hovering over the button, and if so makes the button lighter
     if (mouseY <= 400 && mouseY >= 300) {
       fill (100);
       rect (100, 300, 250, 400);
@@ -215,6 +247,7 @@ void restart () {
     rect (100, 300, 250, 400);
   }
   
+  //drawing main menu button
   if (mouseX <= 500 && mouseX >= 300) {
     if (mouseY <= 400 && mouseY >= 300) {
       fill (100);
@@ -228,7 +261,7 @@ void restart () {
     rect (350, 300, 500, 400);
   }
   
-  
+  //main menu symbol
   fill (255);
   noStroke();
   
@@ -236,10 +269,10 @@ void restart () {
   rect (380, 345, 470, 360);
   rect (380, 370, 470, 385);
   
-  
+  //restart symbol
   ellipse (175, 350, 70, 70);
   
-  if (mouseX <= 250 && mouseX >= 100) {
+  if (mouseX <= 250 && mouseX >= 100) { //checks user's mouse location to gray out button
     if (mouseY <= 400 && mouseY >= 300) {
       fill (100);
       ellipse (175, 350, 50, 50);
@@ -258,5 +291,5 @@ void restart () {
   fill (255);
   triangle (160, 305, 160, 350, 185, 322.5);
   
-  stroke(2);
+  stroke(0);
 }

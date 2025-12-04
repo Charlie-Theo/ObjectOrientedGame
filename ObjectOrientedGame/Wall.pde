@@ -39,4 +39,8 @@ class Wall {
     
     return hit;
   }
+  
+  void reset () {
+    levelX = 0;
+  }
 }

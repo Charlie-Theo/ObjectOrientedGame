@@ -172,16 +172,14 @@ void game () {
   background (255, 238, 139);
   
   if (reset == true) {
-    levelX = 0; //resets the level position whenever the game function is called
+    for (int a = 0; a < 17; a++) {
+      walls.get(a).reset(); //resets the level position whenever the game function is called
+    }
     player.move(); //calls the move function which restarts the location
-    levelSpeed = 1; //resets level speed
     reset = false;
   }
   
-  if (levelX > -3400) {//makes the level stop moving at the end
-    //moving level
-    levelX = levelX - levelSpeed; //updated the level position every frame based on the set speed
-  } else {
+  if (levelX < -3400) {//makes the level stop moving at the end
     user = 2; //sends the user to the restart function through draw, but with the win conditions
   }
   

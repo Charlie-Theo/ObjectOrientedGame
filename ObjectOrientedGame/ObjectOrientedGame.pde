@@ -7,6 +7,8 @@ boolean reset = false; //determines if the level needs to be reset or not
 
 boolean lose = false; //tells the program if the user lost
 
+String winLose; //variable for restart text
+
 //creating objects
 Player player;
 
@@ -15,6 +17,7 @@ ArrayList <Circle> eyes = new ArrayList <Circle>();
 
 void setup () {
   size (600, 600);
+  textAlign(CENTER);
   
   rectMode (CORNERS);
   ellipseMode (CENTER);
@@ -116,6 +119,11 @@ void keyReleased () {
 void menu () {
   background (255, 238, 139);
   
+  //displaying title text
+  textSize(80);
+  fill(188, 104, 0);
+  text("Can't Turn Back", 300, 200);
+  
   //drawing start button
   fill (188, 85, 0);
   rect (240, 330, 360, 380);
@@ -128,6 +136,10 @@ void menu () {
       rect (240, 330, 360, 380);
     }
   }
+  
+  //displaying start button symbol
+  fill(255);
+  triangle (280, 335, 280, 375, 320, 355);
 }//menu end
 
 
@@ -235,10 +247,17 @@ void game () {
 void restart () {
   if (lose == true) { //changes based on if the user is in this menu because they won or lost
     fill (216, 76, 37); //lost
+    winLose = "Game Over!";
   } else {
     fill (111, 242, 37); //wins
+    winLose = "You Win!";
   }
   rect (0, 0, 600, 600);
+  
+  //displaying text
+  textSize(100);
+  fill(255);
+  text(winLose, 300, 200);
   
   //displaying restart button
   if (mouseX <= 250 && mouseX >= 100) { //check if the user's mouse is hovering over the button, and if so makes the button lighter

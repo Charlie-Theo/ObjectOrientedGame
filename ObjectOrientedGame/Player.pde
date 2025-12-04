@@ -10,6 +10,7 @@ class Player {
   boolean left;
   boolean right;
   
+  
   //constructer
   Player () {
     location = new PVector (250, 300);

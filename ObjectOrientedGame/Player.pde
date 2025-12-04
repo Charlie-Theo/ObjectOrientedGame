@@ -111,9 +111,9 @@ class Player {
   }
   
   
-  void collision (Wall wall) {
+  void collision (Wall wall) { //moves the player out of the collision zone if they are colliding with the wall
     if (location.x < wall.wallX2) {
-      location.x -= velocity.x;
+      location.x -= velocity.x; //adds or subtracts velocity based on which side of the wall the player is on
     }
     if (location.x > wall.wallX) {
       location.x += velocity.x;

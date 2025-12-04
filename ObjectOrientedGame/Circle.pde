@@ -31,7 +31,7 @@ class Circle {
   }
   
   
-  void flicker () {
+  void flicker () { //can be used to create effects with the display
     noStroke();
     fill (r, g, b, trans);
     

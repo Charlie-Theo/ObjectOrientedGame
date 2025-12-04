@@ -11,12 +11,12 @@ String winLose; //variable for restart text
 
 boolean hit; //tells the wall collider if the player has hit a wall
 
-//creating objects
+//creating objects and arraylists
 Player player;
 
 ArrayList <Circle> monsterEffect = new ArrayList <Circle>();
 ArrayList <Circle> eyes = new ArrayList <Circle>();
-ArrayList <Wall> walls = new ArrayList <Wall>();
+ArrayList <Wall> walls = new ArrayList <Wall>(); //arraylist to store the maze walls and layout
 
 void setup () {
   size (600, 600);
@@ -68,6 +68,7 @@ void draw () {
     //calling game function
     game();
   } else if (user == 2) {
+    //calling restart function
     restart();
   }
 }
@@ -175,6 +176,7 @@ void game () {
     for (int a = 0; a < 17; a++) {
       walls.get(a).reset(); //resets the level position whenever the game function is called
     }
+    levelX = 0; //resets end position
     player.move(); //calls the move function which restarts the location
     reset = false;
   }
@@ -184,7 +186,7 @@ void game () {
   }
   
   //displays and moves walls
-  for (int a = 0; a < 17; a++) {
+  for (int a = 0; a < 19; a++) {
     walls.get(a).display();
     walls.get(a).move();
     
@@ -196,6 +198,8 @@ void game () {
       hit = false;
     }
   }
+  
+  levelX = levelX - levelSpeed; //adds the level speed to move the level
   
   //creating display for finish
   fill (87, 209, 40);
@@ -234,7 +238,7 @@ void game () {
       m.flicker();
     }  
   } else {
-    for (int d = 0; d < 40; d++) { //no transparency effects
+    for (int d = 0; d < 40; d++) { //no transparency effects for the remainder of frames
       Circle m = monsterEffect.get(d);
       m.display();
     }
@@ -248,7 +252,7 @@ void game () {
   
   //adding lose condition
   if (lose == true) {
-    user = 2; //tells thedraw function to call the restart function
+    user = 2; //tells the draw function to call the restart function
   }
   
 }//game end

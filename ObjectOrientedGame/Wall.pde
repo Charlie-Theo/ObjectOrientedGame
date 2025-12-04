@@ -4,10 +4,10 @@ class Wall {
   float wallX2;
   float wallY2;
   
-  float levelSpeed = 1;
-  float levelX = 0;
+  float levelSpeed = 1; //how fast the level moves
+  float levelX = 0; //this variable slowly gets more negative to move the maze to the left
   
-  boolean hit;
+  boolean hit; //tells main if the player has hit a wall
   
   Wall (float _x, float _y, float _x_, float _y_) {
     wallX = _x;
@@ -27,7 +27,7 @@ class Wall {
   }
   
   boolean collision (Player player) {
-    if (player.location.x < levelX+wallX2 && player.location.x > levelX+wallX) {
+    if (player.location.x < levelX+wallX2 && player.location.x > levelX+wallX) { //checks if the player location is within the x and y paramaters of each wall
       if (player.location.y < wallY2 && player.location.y > wallY) {
         hit = true;
       } else {
@@ -40,7 +40,7 @@ class Wall {
     return hit;
   }
   
-  void reset () {
+  void reset () { //resets the wall positions
     levelX = 0;
   }
 }
